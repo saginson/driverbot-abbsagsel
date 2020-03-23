@@ -1,1 +1,12 @@
-
+2020-03-23
+    Jag har jobbat med pythonprojektet och fått allt att fungera.
+    1. Det finns kommer upp meddelenaden som med en timer visar ett 
+    meddelande under ca fem sekunder som säger ifall du svarat rätt
+    eller fel. 
+        1.1 Ifall du svarar rätt eller fel flera gånger påverkas
+        responsen du får. Antingen till det bättre eller sämre.
+    2. Jag är på fjärde frågan just nu och kommer nog fortsätta med
+    ganska många fler nu när jag fått in arbetssättet.
+        2.1 Alla svar skickar dig vidare till nästa fråga men då 
+        responsen kommer och stannar i fem sekunder känns det som 
+        att det skiftar mellan flera "sidor".
