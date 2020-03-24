@@ -10,3 +10,15 @@
         2.1 Alla svar skickar dig vidare till nästa fråga men då 
         responsen kommer och stannar i fem sekunder känns det som 
         att det skiftar mellan flera "sidor".
+
+2020-03-24
+    Under första lektionen jobbade jag med arduino och MQTT.
+    Jag skapade två topics, direction_forward och direction_backwards.
+    Därefter lärde jag mig connecta till mqtt.fx där man kan kolla
+    ifall det skickas meddelanden till ens topics. Jag tog även
+    reda på vad det var som fick motorn att snurra åt två olika håll. 
+
+    Under andra lektionen jobbade jag med mitt pythonprojekt. Jag
+    har gjort svaren lite mer intressanta och mer beroende av vad
+    användaren gör. Dessutom har jag lagt till en ny ruta som berättar
+    vilket svar som var rätt ifall användaren svarar fel.
