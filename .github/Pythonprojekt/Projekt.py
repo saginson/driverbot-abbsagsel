@@ -10,12 +10,23 @@ C.pack()
 anger = 0
 happy = 0
 question = 0
+introduction = False
 
 def interface():
+    global infotext
+    global introduction
+    global start_btn
+    global info
+    if introduction == True:
+        infotext.destroy()
+        goback_btn.destroy()
+        introduction = False
     # C.create_window(window=introtext)
     introtext.place(x=10, y=10)
     introtext.insert(1.0, 'Welcome to...\nThe Personal and Very Customized quiz-night!\n*cheering* Press a button. Any button! \n(The only button)')
     introtext.config(state=DISABLED)
+    C.create_window(150, 120, window=start_btn)
+    C.create_window(250, 120, window=info)
     # print("it's working, ITS WORKING!")
 
 
@@ -24,10 +35,23 @@ def begin():
     starttext = Text(master, width=45, height=10)
     starttext.place(x=10,y=10)
     starttext.insert(1.0, 'What I want you to do is... To answer every \nquestion honestly. \nI dont want to see you pressing any "random \nbuttons", got it?\nAlso! The correct answer will be displayed atthe bottom of this screen and not disappear \nuntil you have answered another question \nincorrectly! Take your time and if you find \nsomething interesting to read, remember that.')
-    C.delete(a)
+    starttext.config(state=DISABLED)
+    start_btn.destroy()
+    info.destroy()
     C.create_window(200,200,window=accept_and_start_btn)
     C.update()
 
+def infoText():
+    global infotext
+    global introduction
+    info.destroy()
+    start_btn.destroy()
+    infotext = Text(master, width=45, height=10)
+    infotext.place(x=10,y=10)
+    infotext.insert(1.0, 'What I want you to do is... To answer every \nquestion honestly. \nI dont want to see you pressing any "random \nbuttons", got it?\nAlso! The correct answer will be displayed atthe bottom of this screen and not disappear \nuntil you have answered another question \nincorrectly! Take your time and if you find \nsomething interesting to read, remember that.')
+    infotext.config(state=DISABLED)
+    C.create_window(200,200,window=goback_btn)
+    introduction = True
 def incorrect():
     rightAnswer()
     global anger
@@ -52,6 +76,7 @@ def incorrect():
     if anger == 6 and happy == 0:
         incorrect_msg.insert(1.0, "You are SUCH a dumb, mean person! *cries* I don't wanna do this anymore!")
 
+    incorrect_msg.config(state=DISABLED)
     C.update
     if question == 1:
         timer_sec_que.start()
@@ -91,6 +116,7 @@ def correct():
     if happy == 6 and anger > 4:
         correct_msg.insert(1.0, "Yeah. Lucky again, I see...")
 
+    correct_msg.config(state=DISABLED)
     C.update
     if question == 1:
         timer_sec_que.start()
@@ -120,6 +146,7 @@ def rightAnswer():
     if question == 6:
         msg = "FALSE! It's actually native to China"
     rightanswer.insert(1.0, "Right answer: \n"+msg+"!")
+    rightanswer.config(state=DISABLED)
 
 def firstQuestion():
     global question
@@ -133,6 +160,7 @@ def firstQuestion():
     C.create_window(200,120,window=hetvägg)
     C.create_window(100,120,window=grötbulle)
     C.create_window(300,120,window=samke)
+    firstquestion.config(state=DISABLED)
     C.update()
 
 def secondQuestion():
@@ -148,6 +176,7 @@ def secondQuestion():
     C.create_window(150,120,window=red)
     C.create_window(250,120,window=blue)
     C.create_window(350,120,window=magenta)
+    secondquestion.config(state=DISABLED)
     C.update()
 
 def thirdQuestion():
@@ -164,6 +193,7 @@ def thirdQuestion():
     C.create_window(150,120,window=ariel)
     C.create_window(250,120,window=anna)
     C.create_window(350,120,window=belle)
+    thirdquestion.config(state=DISABLED)
     C.update()
 
 def fourthQuestion():
@@ -180,6 +210,7 @@ def fourthQuestion():
     C.create_window(150,120,window=glasses)
     C.create_window(250,120,window=no_ears)
     C.create_window(350,120,window=giant_feet)
+    fourthquestion.config(state=DISABLED)
     C.update()
 
 def fifthQuestion():
@@ -196,6 +227,7 @@ def fifthQuestion():
     C.create_window(150,120,window=dominica)
     C.create_window(250,120,window=mexico)
     C.create_window(350,120,window=guam)
+    fifthquestion.config(state=DISABLED)
     C.update()
 
 def sixthQuestion():
@@ -210,6 +242,8 @@ def sixthQuestion():
     sixthquestion.insert(1.0, "Let's do a little TRUE or FALSE!\nThe kiwi fruit is native to New Zealand. True or false?")
     C.create_window(150,120,window=kiwi_true)
     C.create_window(250,120,window=kiwi_false)
+    sixthquestion.config(state=DISABLED)
+    C.update()
 
 def seventhQuestion():
     global question
@@ -226,6 +260,8 @@ timer_sev_que = threading.Timer(8,seventhQuestion)
 
 introtext = Text(master, width=45, height=5)
 start_btn = Button(master, text='Start', command = begin)
+info = Button(master, text='Info', command = infoText)
+goback_btn = Button(master, text ='Go Back', command = interface)
 accept_and_start_btn = Button (master, text='Okay', command = firstQuestion)
 #FIRST QUESTION
 hetvägg = Button(master, text='Hetvägg', command=correct) #CORRECT
@@ -256,7 +292,7 @@ kiwi_true = Button(master, text = 'TRUE', command = incorrect) #INCORRECT
 kiwi_false = Button(master, text = 'FALSE', command = correct) #CORRECT
 
 interface()
-a = C.create_window(200, 120, window=start_btn)
+
 C.update()
 
 master.mainloop()
