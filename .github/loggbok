@@ -22,3 +22,10 @@
     har gjort svaren lite mer intressanta och mer beroende av vad
     användaren gör. Dessutom har jag lagt till en ny ruta som berättar
     vilket svar som var rätt ifall användaren svarar fel.
+
+2020-03-27
+    Under sista lektionen har jag främst försökt implementera klasser
+    i min kod. Jag har även förberett för att skapa en app för att styra
+    min bil via npm install -g expo-cli i Windows PowerShell i mappen där
+    det går att se Driverbt (där jag ska ha appen sen). Efter det 
+    commandot har jag inte gjort någonting på den fronten. 
