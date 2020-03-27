@@ -7,45 +7,51 @@ master = Tk()
     #Canvas
 C = Canvas(master, bg='grey',height=600,width=400)
 C.pack()
+
 anger = 0
 happy = 0
 question = 0
 introduction = False
 
-def interface():
-    global infotext
-    global introduction
-    global start_btn
-    global info
-    if introduction == True:
-        infotext.destroy()
-        goback_btn.destroy()
-        introduction = False
-    # C.create_window(window=introtext)
-    introtext.place(x=10, y=10)
-    introtext.insert(1.0, 'Welcome to...\nThe Personal and Very Customized quiz-night!\n*cheering* Press a button. Any button! \n(The only button)')
-    introtext.config(state=DISABLED)
-    C.create_window(150, 120, window=start_btn)
-    C.create_window(250, 120, window=info)
-    # print("it's working, ITS WORKING!")
+sentences = [
+    "How are you today?",
+    "Ok.",
+    "Have you learned anything yet?"
+]
+class Intro:
+    def __init__(self, introtext, start_btn, info, extra):
+        self.introtext = introtext
+        self.start_btn = start_btn
+        self.info = info
+        self.extra = extra
+        introtext.place(x=10, y=10)
+        introtext.insert(1.0, 'Welcome to...\nThe Personal and Very Customized quiz-night!\n*cheering* Press a button. Any button!')
+        introtext.config(state=DISABLED)
+        
+    def create(self):
+        C.create_window(100, 120, window=start_btn)
+        C.create_window(200, 120, window=info)
+        C.create_window(300, 120, window=extra)
 
+    def interface(self):
+        global infotext
+        global introduction
+        if introduction == True:
+            infotext.destroy()
+            goback_btn.destroy()
+            introduction = False
+        # C.create_window(window=introtext)
 
-def begin():
-    global starttext
-    starttext = Text(master, width=45, height=10)
-    starttext.place(x=10,y=10)
-    starttext.insert(1.0, 'What I want you to do is... To answer every \nquestion honestly. \nI dont want to see you pressing any "random \nbuttons", got it?\nAlso! The correct answer will be displayed atthe bottom of this screen and not disappear \nuntil you have answered another question \nincorrectly! Take your time and if you find \nsomething interesting to read, remember that.')
-    starttext.config(state=DISABLED)
-    start_btn.destroy()
-    info.destroy()
-    C.create_window(200,200,window=accept_and_start_btn)
-    C.update()
+def extra():
+    print("extra")
+    C.create_window(200,200,window=smalltalk)
+
+def smallTalk():
+    print("small talk")
 
 def infoText():
     global infotext
     global introduction
-    info.destroy()
-    start_btn.destroy()
     infotext = Text(master, width=45, height=10)
     infotext.place(x=10,y=10)
     infotext.insert(1.0, 'What I want you to do is... To answer every \nquestion honestly. \nI dont want to see you pressing any "random \nbuttons", got it?\nAlso! The correct answer will be displayed atthe bottom of this screen and not disappear \nuntil you have answered another question \nincorrectly! Take your time and if you find \nsomething interesting to read, remember that.')
@@ -71,10 +77,12 @@ def incorrect():
         incorrect_msg.insert(1.0, "WHY CAN'T YOU JUST BE SMART LIKE YOUR \nSIBLINGS?! *cough* *cough* It's fine. I'm \nFINE.")
     if anger == 5 and happy == 0:
         incorrect_msg.insert(1.0, "WHY WON'T YOU LISTEN TO ME, YOU LITTLE \nSHIT?! I TOLD YOU MEXICO WAS THE RIGHT \nANSWER!!!")
+    if anger == 5 and happy > 0:
+        incorrect_msg.insert(1.0, "*Heavy breathing*")
     if anger == 6 and happy > 0:
         incorrect_msg.insert(1.0, "I don't know... Is this even worthwhile? I mean, you aren't learning anything.")
     if anger == 6 and happy == 0:
-        incorrect_msg.insert(1.0, "You are SUCH a dumb, mean person! *cries* I don't wanna do this anymore!")
+        incorrect_msg.insert(1.0, "You are SUCH a dumb, mean person! *cries* \nI don't wanna do this anymore!")
 
     incorrect_msg.config(state=DISABLED)
     C.update
@@ -150,10 +158,15 @@ def rightAnswer():
 
 def firstQuestion():
     global question
-    global starttext
+    global introtext
+    global start_btn
+    global info
+    global extra
     question = 1
-    starttext.destroy()
-    accept_and_start_btn.destroy()
+    introtext.destroy()
+    start_btn.destroy()
+    info.destroy()
+    extra.destroy()
     firstquestion = Text(master, width=45, height=5)
     firstquestion.place(x=10,y=10)
     firstquestion.insert(1.0, 'Splendid! First question, then...\nA semla is a traditional sweet roll that for instance is made in Sweden. If eaten togetherwith warm milk, what is the Swedish word for it?')
@@ -249,7 +262,7 @@ def seventhQuestion():
     global question
     question = 7
 
-
+intro = Intro(introtext, start_btn,info,extra)
 event = threading.Event()
 timer_sec_que = threading.Timer(3, secondQuestion)
 timer_thi_que = threading.Timer(3,thirdQuestion)
@@ -259,10 +272,11 @@ timer_six_que = threading.Timer(8,sixthQuestion)
 timer_sev_que = threading.Timer(8,seventhQuestion)
 
 introtext = Text(master, width=45, height=5)
-start_btn = Button(master, text='Start', command = begin)
-info = Button(master, text='Info', command = infoText)
-goback_btn = Button(master, text ='Go Back', command = interface)
-accept_and_start_btn = Button (master, text='Okay', command = firstQuestion)
+start_btn = Button(master, text='Start', command = firstQuestion)
+info = Button(master, text='Help', command = infoText)
+extra = Button(master, text='Extra', command = extra) #extra skulle kunna vara en klass
+smalltalk = Button(master, text='Small talk',command = smallTalk)
+goback_btn = Button(master, text ='Go Back', command = intro.interface)
 #FIRST QUESTION
 hetvägg = Button(master, text='Hetvägg', command=correct) #CORRECT
 grötbulle = Button (master, text = 'Grötbulle', command = incorrect) #INCORRECT
@@ -291,8 +305,7 @@ mexico = Button(master, text = 'Mexico', command = correct) #CORRECT
 kiwi_true = Button(master, text = 'TRUE', command = incorrect) #INCORRECT
 kiwi_false = Button(master, text = 'FALSE', command = correct) #CORRECT
 
-interface()
-
+intro.create() 
 C.update()
 
 master.mainloop()
