@@ -25,31 +25,37 @@ dic = {
         "Q": "First question, then...\nA semla is a traditional sweet roll that for instance is made in Sweden. If eaten together with warm milk, what is the Swedish word for it?",
         "svar": ["hetvägg","samke","grötbulle"],
         "template": [1,0,0],
+        "rätt": "hetvägg",
     },
     "fråg2":{
         "Q": "Second question! In a 2010 study, people \nfound more mistakes when they marked essays \nwith a pen of what color?",
         "svar":["green","red","blue","magenta"],
         "template":[0,1,0,0],
+        "rätt": "red",
     },
     "fråg3":{
         "Q": "Moving on to the third question! What \nprincess was traditionally called \nBadr al-Budur before Disney renamed her?",
         "svar":["jasmine","merida","anna","belle"],
         "template":[1,0,0,0],
+        "rätt": "jasmine",
     },
     "fråg4":{
         "Q": "Do you like the Swedish questions? In \nSwedish, a skvader is a rabbit with what \nunusual feature?",
         "svar":["wings","glasses","no ears","giant feet"],
         "template":[1,0,0,0],
+        "rätt": "wings",
     },
     "fråg5":{
         "Q": "More countries! Which country’s flag featuresan eagle eating a snake?",
         "svar":["mozambique","dominica","mexico","guam"],
         "template":[0,0,1,0],
+        "rätt": "mexico",
     },
     "fråg6":{
         "Q": "Let's do a little TRUE or FALSE!\nThe kiwi fruit is native to New Zealand. True or false?",
         "svar":["True","False"],
         "template":[0,1],
+        "rätt": "false, it's actually native to China!",
     },
 }
 # n=1
@@ -59,4 +65,5 @@ dic = {
 #         "Q": "",
 #         "svar":[],
 #         "template":[],
+#         "rätt": "",
 #     }

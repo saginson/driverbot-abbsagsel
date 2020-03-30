@@ -5,19 +5,19 @@ import threading
 import databas
 #Generate base window
 
-#VARIABLES
+#VARIABLES ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 master = Tk()
     #Canvas
 C = Canvas(master, bg='grey',height=600,width=400)
 C.pack()
-dic = databas.dic
-happlist = databas.happy
-angrlist = databas.angry
-n = 0 #variabeln som förklarar vilken fråga som ska presenteras (visar längre ner i funktionen open() i class Question)
-happy = 0
-angry = 0
+dic = databas.dic #döper om min dictionary från databasen
+happlist = databas.happy #döper om listan "happy" som hämtas från databasen
+angrlist = databas.angry #samma som ovan, fast för "angry"
+n = 0 #variabeln som förklarar vilken fråga som ska presenteras (visas mer i funktionen create())
+happy = 0 #hur många rätta svar användaren fått
+angry = 0 #hur många felaktiga svar användaren fått
 
-
+#CLASSES AND FUNCTIONS ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 class Intro:
     def __init__(self):
         self.introtext = Text(C, width=45, height=5)
@@ -30,36 +30,34 @@ class Intro:
         self.introtext.insert(1.0, 'Welcome to...\nThe Personal and Very Customized quiz-night!\n*cheering* Press a button. Any button!')
         C.update()
 
+
 class Question:
     def __init__(self):
-        self.Qst = Text(master, width=45, height=5)
+        self.Qst = Text(master, width=45, height=5) #öppnar textfönstret och döper det till "Qst"
 
     def open(self, question):
-        #HÄR STARTAR FRÅGORNA
-        self.Qst.delete(1.0,END)
-        kaputt()
-        print("?")
-        self.Qst.place(x=10,y=10)
-        self.Qst.insert(1.0,question["Q"]) #här används n för att kontrollera ifall det ska vara fråg1, fråg2 eller fråg3 som ska visas. fråg1, fråg2 och fråg3 finns i filen databas som jag importerar
-        print(question["Q"])
-        m = 0
-        for answer in question["svar"]:
-            question["template"][m]
-            print(question["template"][m])
-            if question["template"][m] == 1:
-                b = Button(C, text=answer, command = createTrue)
-            if question["template"][m] == 0:
-                b = Button(C, text=answer, command = createFalse)
+        self.Qst.delete(1.0,END) #rensar textfönstret
+        kaputt() #tar bort alla knappar
+        self.Qst.place(x=10,y=10) #placerar textfönstret
+        self.Qst.insert(1.0,question["Q"])
+        # print(question["Q"])
+        m = 0 #m ökar med 1 varje gång och motsvarar plat
+        for answer in question["svar"]: #för varje svar i listan "svar"
+            # question["template"][m]
+            # print(question["template"][m])
+            if question["template"][m] == 1: #variabeln m står för platsen i listan "template" som finns i min dictionary, programmet kollar då en plats i taget och kollar ifall det är en etta eller nolla
+                b = Button(C, text=answer.capitalize(), command = createTrue)
+            if question["template"][m] == 0: # 1 är rätt, 0 är fel
+                b = Button(C, text=answer.capitalize(), command = createFalse) #exempelvis ifall objektet är 0, då skapas en knapp med svaret som är fel som leder till funktionen som hör till felaktiga svar
             b.place(x=20+m*85,y=110)
             m+=1
-        
         C.update()
 
     def responseTrue(self):
         global happy
         global angry
         happy+=1
-        print("True!!")
+        # print("True!!")
         if angry < 4:
             qst.Qst.insert(1.0,happlist[happy-1])
 
@@ -71,7 +69,7 @@ class Question:
         global angry
         global happy
         angry+=1
-        print("False!!")
+        # print("False!!")
         if angry < 4:
             qst.Qst.insert(1.0,angrlist[angry-1])
 
@@ -79,30 +77,27 @@ class Question:
         time.sleep(2)
         create()
 
-
-
-
-
-#VARIABLES
+#VARIABLES --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 qst = Question()
 
 
-#CODE
+#STANDALONE FUNCTIONS ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def kaputt():
     for widget in C.winfo_children():
             widget.destroy()
+
 def happyCheck(happy,checkHappy,mess):
     if happy == checkHappy:
         qst.Qst.insert(1.0,mess)
 def angryCheck(angry,checkAngry,mess):
     if angry == checkAngry:
         qst.Qst.insert(1.0,mess)
-
-    
+   
 def create():
     global n
-    n += 1
-    qst.open(dic["fråg"+str(n)])
+    n += 1 #n används under för att kontrollera vilken fråga som ska startas. fråg1, fråg2 eller fråg3
+    qst.open(dic["fråg"+str(n)]) #dic["fråg"+str(n)] sätts in i "question" i funktionen open()
+
 def createFalse():
     qst.Qst.delete(1.0,END)
     qst.responseFalse()
@@ -111,11 +106,11 @@ def createTrue():
     qst.responseTrue()
 
 
-#VARIABLES
+#VARIABLES --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ejntro = Intro() #nu kan jag nå min Intro-klass och ha "ejntro.intro()" istället för "Intro.intro()" så att programmet och jag inte blir förvirrad
 
-
-#BEGINNING
+ 
+#BEGINNING --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ejntro.intro()
 # print(dic["fråg1"]["Q"])
 
