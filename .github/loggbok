@@ -29,3 +29,17 @@
     min bil via npm install -g expo-cli i Windows PowerShell i mappen där
     det går att se Driverbt (där jag ska ha appen sen). Efter det 
     commandot har jag inte gjort någonting på den fronten. 
+
+2020-03-31
+    Jag har i helgen fixat mitt pythonprojekt. Jag har skapat en databas 
+    och implementerat klasser vilket ger snyggare och mer funktionabel kod.
+    Programmet blev även en del självgående. Jag behöver bara fylla på med
+    ytterligare frågor samt svar i databasen och den kör det utan någon 
+    förändring i huvudkoden! :)
+
+    Idag fixade jag MQTT och lite arduino och kan nu styra bilen via min 
+    hemsida. Alltså då få hjulen att snurra framåt och bakåt samt stå 
+    stilla. Det genom att göra en slider som har värdet 0, 1 eller 2. 
+    Jag gjorde en gemensam topic som heter /direction där min nodeMCU
+    antingen får hjulet att snurra framåt, bakåt eller inte alls beroende
+    på värdet från slidern.
