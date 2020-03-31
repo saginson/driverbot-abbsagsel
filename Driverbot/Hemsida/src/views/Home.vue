@@ -2,7 +2,7 @@
   <div>
     <v-card class="justify-center" max-width="" max-height="" outlined>
       <v-card-actions>
-        <v-row align="start" justify="space-around" no-gutters>
+        <!-- <v-row align="start" justify="space-around" no-gutters> -->
           <!-- <v-slider
             inverse-label
             label="Brightness"
@@ -11,15 +11,36 @@
             max="1023"
             min="4"
           ></v-slider> -->
-          <!-- <v-btn @click="send">Update </v-btn> -->
-          <v-switch
-            label="On/Off"
-            v-model="onoff_btn"
-            color="green"
-            @change="forward()"
-          >
-          </v-switch>
-        </v-row>
+          <!-- <v-btn 
+          @click="dir"
+          state = 1>Forward </v-btn>
+          <v-btn 
+          @click="dir"
+          state = 2>Backwards </v-btn>
+          <v-btn
+          @click="dir"
+          state = 0>Stop </v-btn> -->
+
+
+
+
+          <v-subheader>States:</v-subheader>
+      <v-col
+        cols="1"
+        style="min-width: 400px; max-width: 100%;"
+        class="flex-grow-1 flex-shrink-0"
+      >
+      <v-slider
+        v-model="state"
+        :tick-labels="directions"
+        max="2"
+        min="0"
+        step="1"
+        ticks="always"
+        tick-size="4"
+      ></v-slider>
+      </v-col>
+        <!-- </v-row> -->
       </v-card-actions>
     </v-card>
   </div>
@@ -31,7 +52,12 @@ var mqtt = require("mqtt"),
   url = require("url");
 export default {
   data: () => ({
-    // ljusstyrka: 50,
+    directions: [
+          'Backwards',
+          'Stop',
+          'Forward',
+        ],
+    state: 1,
     onoff_btn: false,
     connected: false,
     client: undefined,
@@ -47,6 +73,12 @@ export default {
       this.connect();
     //   console.log(this.connected); //under testningen behövdes denna så att användaren kunde se i konsollen ifall webbsidan connectat
     }, 2000); //webbsidan försöker ansluta varannan sekund för att motverka avbrott
+  
+    this.dir();
+    setInterval(() => {
+      this.dir();
+      // console.log("helo");
+    }, 500);
   },
 
   methods: {
@@ -92,24 +124,15 @@ export default {
     //     this.message.toString()
     //   );
     // },
-    forward() {
+    dir() {
       //skickar ett värde på 1 eller 0 till databas, ledstripp är av eller på
-      if (this.onoff_btn == true) {
-        //ifall spaken sätts på
-        this.client.publish(
-          "saga.sellin@abbindustrigymnasium.se/direction_forward",
-          "1"
-        );
-        console.log("On");
-      } else {
-        //annars skickas 0
-        this.client.publish(
-          "saga.sellin@abbindustrigymnasium.se/direction_forward",
-          "0"
-        );
-        console.log("Off");
+      this.message = this.state;
+      this.client.publish(
+        "saga.sellin@abbindustrigymnasium.se/direction",
+        this.message.toString()
+      );
       }
-    }
+    
   }
 };
 </script>
