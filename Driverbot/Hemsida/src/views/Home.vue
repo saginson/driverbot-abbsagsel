@@ -1,7 +1,7 @@
 <template>
   <v-container ma-0 pa-0>
+    <v-layout row wrap>
   <div>
-    <v-layout row>
       <!-- <v-flex> -->
     <v-card class="justify-center" width="1920" height="850" outlined id="content2">
       <v-card-actions>
@@ -28,7 +28,7 @@
 
         <!-- <v-container grid-list-md> -->
           <!-- <v-row> -->
-      
+      <v-flex xs4>
       <v-col
         cols="1"
         style="min-width: 500px; max-width: 100%;"
@@ -46,15 +46,19 @@
         dark
       ></v-slider>
       </v-col>
+      </v-flex>
       
       <!-- </v-row> -->
       <!-- </v-container> -->
+      <v-flex xs4>
         <v-card id="gon">helo</v-card>
         <v-btn class="ma-2" 
           text icon color="orange lighten-2" 
           @click= "overlay = !overlay">
         <v-icon color="white" >info</v-icon>
         </v-btn>
+        </v-flex>
+        <v-flex>
         <v-row>
           <v-card class="justify-end">
           <v-slider
@@ -68,11 +72,12 @@
           </v-card>
 
         </v-row>
+        </v-flex>
       </v-card-actions>
     </v-card>
     <span v-hotkey="keymap"></span>
-    </v-layout>
   </div>
+   </v-layout>
   </v-container>
 </template>
 

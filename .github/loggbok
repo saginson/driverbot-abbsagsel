@@ -55,3 +55,10 @@
     löstes. Sen dök även ett problem med html-entities upp så jag körde
     "npm install html-entities" i terminalen. Det löste inte problemet.
     Efter "npm install --save vue-router" funkade det, konstigt nog.
+
+    Lektion 2 - Liten uppgradering av hemsidan. Försökte förstå vue
+    samt vuetify under hela lektionen utan framsteg.
+
+    Lektion 3 - Jobbar med layouten på hemsidan och har skrivit om 
+    arduino-koden efter exemplet. Ska implementera koden i hemsidan
+    efter att den är klar.
