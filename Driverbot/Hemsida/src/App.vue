@@ -26,4 +26,10 @@ export default {
 </script>
 
 <style>
+#toolbar{
+  background-image: url("https://s3.envato.com/files/236520857/MG_VH_CITY_ROAD_LOOP_PREW_500x300.jpg");
+}
+/* #content{
+  background-image: url("https://s3.envato.com/files/236520857/MG_VH_CITY_ROAD_LOOP_PREW_500x300.jpg");
+} */
 </style>

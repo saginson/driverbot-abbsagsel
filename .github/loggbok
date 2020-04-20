@@ -43,3 +43,15 @@
     Jag gjorde en gemensam topic som heter /direction där min nodeMCU
     antingen får hjulet att snurra framåt, bakåt eller inte alls beroende
     på värdet från slidern.
+
+2020-04-20
+    Jag försökte få bilen att sluta köra så fort den disconnectar men det
+    visade sig att den disconnectar lite hela tiden så idéen behövde skrotas. 
+    Just nu håller jag på med "kotkey binds" så att det går lättare att 
+    kontrollera bilen. Än så länge sitter inte servot på men det kommer
+    så småningom. Fick problem med keybind och körde 
+    "npm install --save-dev @babel/preset-env" i terminalen.
+    Verkade vara ett problem med babel, som var en dependency. Problemet
+    löstes. Sen dök även ett problem med html-entities upp så jag körde
+    "npm install html-entities" i terminalen. Det löste inte problemet.
+    Efter "npm install --save vue-router" funkade det, konstigt nog.

@@ -14,9 +14,9 @@
           <v-spacer></v-spacer>
           <v-col cols="12" sm="3" name: column>
             <!-- genom to="help" skickas användaren till routen "help" -->
-            <v-btn icon to="help">
+            <!-- <v-btn icon to="help"> -->
               <!-- <v-icon>mdi-information</v-icon> -->
-            </v-btn>
+            <!-- </v-btn> -->
           </v-col>
         </v-toolbar>
       </v-card>
@@ -50,4 +50,5 @@
   color: #FAFAFA;
   /* font-family: "Arial Black"; */
 }
+
 </style>

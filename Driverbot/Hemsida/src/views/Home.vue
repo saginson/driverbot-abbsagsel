@@ -1,6 +1,9 @@
 <template>
+  <v-container ma-0 pa-0>
   <div>
-    <v-card class="justify-center" max-width="" max-height="" outlined>
+    <v-layout row>
+      <!-- <v-flex> -->
+    <v-card class="justify-center" width="1920" height="850" outlined id="content2">
       <v-card-actions>
         <!-- <v-row align="start" justify="space-around" no-gutters> -->
           <!-- <v-slider
@@ -23,27 +26,54 @@
 
 
 
-
-          <v-subheader>States:</v-subheader>
+        <!-- <v-container grid-list-md> -->
+          <!-- <v-row> -->
+      
       <v-col
         cols="1"
-        style="min-width: 400px; max-width: 100%;"
+        style="min-width: 500px; max-width: 100%;"
         class="flex-grow-1 flex-shrink-0"
       >
       <v-slider
         v-model="state"
-        :tick-labels="directions"
+        :tick-labels ="directions"
         max="2"
         min="0"
         step="1"
         ticks="always"
         tick-size="4"
+        color="white"
+        dark
       ></v-slider>
       </v-col>
-        <!-- </v-row> -->
+      
+      <!-- </v-row> -->
+      <!-- </v-container> -->
+        <v-card id="gon">helo</v-card>
+        <v-btn class="ma-2" 
+          text icon color="orange lighten-2" 
+          @click= "overlay = !overlay">
+        <v-icon color="white" >info</v-icon>
+        </v-btn>
+        <v-row>
+          <v-card class="justify-end">
+          <v-slider
+            inverse-label
+            label="Brightness"
+            v-model="ljusstyrka"
+            color="green"
+            max="1023"
+            min="4"
+          ></v-slider>
+          </v-card>
+
+        </v-row>
       </v-card-actions>
     </v-card>
+    <span v-hotkey="keymap"></span>
+    </v-layout>
   </div>
+  </v-container>
 </template>
 
 <script>
@@ -58,6 +88,10 @@ export default {
           'Forward',
         ],
     state: 1,
+    // show: true,
+    absolute: true,
+    opacity: 1,
+    overlay: false,
     onoff_btn: false,
     connected: false,
     client: undefined,
@@ -78,7 +112,7 @@ export default {
     setInterval(() => {
       this.dir();
       // console.log("helo");
-    }, 500);
+    }, 100);
   },
 
   methods: {
@@ -131,8 +165,26 @@ export default {
         "saga.sellin@abbindustrigymnasium.se/direction",
         this.message.toString()
       );
+      },
+      // toggle () {
+      // this.show = !this.show
+      // },
+      // show () {
+      //   this.show = true
+      // },
+      // hide () {
+      //   this.show = false
+      // }
+      // signoflife(){
+      //   console.log("helo")
+      // },
+  },
+  computed: {
+    keymap () {
+      return {
+        // 'a': signoflife()
       }
-    
+    }
   }
 };
 </script>
@@ -141,5 +193,19 @@ export default {
 #b51 {
   justify-content: center;
   align-items: center;
+}
+#content{
+  background-image: url("https://s3.envato.com/files/236520857/MG_VH_CITY_ROAD_LOOP_PREW_500x300.jpg");
+  background-size: 700px 100px;
+}
+#content2{
+  background-image: url("https://cutewallpaper.org/21/background-full-hd-1920x1080/Download-wallpaper-1920x1080-road-marking-trees-sky-full-.jpg");
+  background-size: 1920px 850px;
+}
+#beblack{
+  color: white;
+}
+#gon{
+  opacity: 0;
 }
 </style>
