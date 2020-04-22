@@ -7,7 +7,8 @@ angry = [
     "*Heavy breathing*",
     "I don't know... Is this even worthwhile? I mean, you clearly aren't learning anything.",
     "I knew you'd get this one wrong.",
-    "You're having so much fun with this, \naren't you?"
+    "You're having so much fun with this, \naren't you?",
+    "Well, this is depressing."
     
 ]
 angry_angry = [
@@ -30,7 +31,13 @@ happy = [
     "Why are you better than me at my job? \n*sobs* So unfair...",
     "How can you keep this much information \nin your head?",
     "I told my mom about you and she \ndoesn't believe that you're real.",
-    "Am I sure that you're even human? \nThis is just so unbelievable..."
+    "Am I sure that you're even human? \nThis is just so unbelievable...",
+    "Oh? You're asking me what this is? \n Well, this is embarassing... I wrote a book \nabout you! It's gotten a bit of attention, \nactually.",
+    "People have begged me to be introduced \nto you. They see you as some sort of God, \nor something... I don't know.",
+    "I've put up an altar outside my house. \n What? I'm only doing it to keep the \npeople at bay, you know?",
+    "They... They tried breaking into my \nhouse. With no success, of course.",
+    "I'm starting to doubt that this is \ngoing to work...",
+    "You won't need this. You're correct \nanyways. Always. This will be the last \nquestion. Goodbye. \n...\nI'm not crying... YOU'RE crying!"
     
 ]
 happy_angry = [
@@ -105,6 +112,16 @@ dic = {
         "svar":["Snapchat","Tinder","Pokemon GO","Google Maps"],
         "template":[0,0,1,0],
     },
+    "fråg13":{
+        "Q": "There are an estimated 1,864 of which bear species in the wild?",
+        "svar":["Giant panda","White bear","Himalayan brown bear"],
+        "template":[1,0,0],
+    },
+    "fråg14":{
+        "Q": "What's the oldest continuously inhabited city in the world?",
+        "svar":["Istanbul, Turkey","Jerusalem","Athens, Greece","Damascus, Syria"],
+        "template":[0,0,0,1],
+    },
 }
 
 frågor = -1
@@ -144,3 +161,5 @@ for svar in happy_angry:
 #Among land animals, what species has the largest eyes?
 #So far, which continent has hosted the Olympics the most times?
 #What app, a monster hit in 2016, has been credited with teaching Americans the metric system?
+#There are an estimated 1,864 of which bear species in the wild?
+#What's the oldest continuously inhabited city in the world?

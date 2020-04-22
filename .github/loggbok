@@ -62,3 +62,7 @@
     Lektion 3 - Jobbar med layouten på hemsidan och har skrivit om 
     arduino-koden efter exemplet. Ska implementera koden i hemsidan
     efter att den är klar.
+2020-04-21
+    Lade till extra reaktioner på felaktiga samt rätta svar. Nu 
+    slumpartas även svaren från de olika kategorierna beroende 
+    på max antalet reaktioner i listan. 

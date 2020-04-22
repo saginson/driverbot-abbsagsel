@@ -49,11 +49,15 @@ class Question:
         self.Righty.delete(1.0,END)
         kaputt() #tar bort alla knappar
         self.Qst.place(x=10,y=10) #placerar textfönstret
-        self.Righty.place(x=10,y=150)
+        
         self.Qst.insert(1.0,question["Q"])
         # print(maxfråg)
-        m = 0 #m ökar med 1 varje gång och motsvarar svarets plats
-        for answer in question["svar"]: #för varje svar i listan "svar"
+        x = 0 #m ökar med 1 varje gång och kan resettas 
+        letters = 0 #Motsvarar antal bokstäver i knappen
+        space = 0
+        righty_height = 0 #Y-värdet för rutan med rätt svar
+        #asgdwajkdgaskjdasg
+        for m , answer in enumerate(question["svar"]): #för varje svar i listan "svar"
             # question["template"][m]
             # print(question["template"][m])
             if question["template"][m] == 1: #variabeln m står för platsen i listan "template" som finns i min dictionary, programmet kollar då en plats i taget och kollar ifall det är en etta eller nolla
@@ -61,9 +65,20 @@ class Question:
                 right = answer
             if question["template"][m] == 0: # 1 är rätt, 0 är fel
                 b = Button(C, text=answer.capitalize(), command = createFalse) #exempelvis ifall objektet är 0, då skapas en knapp med svaret som är fel som leder till funktionen som hör till felaktiga svar
-            b.place(x=20+m*100,y=115)
-            m+=1
+            space = 20+20*x+letters*6
+            if space+len(answer) > 300:
+                print('IT TOO BIG')
+                righty_height += 1
+                space = 20
+                x=0
+                letters = 0
+            print(space)
+            b.place(x=space,y=115+35*righty_height)
+            x+=1
+            letters += len(answer)+2
+            # print(letters)
 
+        self.Righty.place(x=10,y=150+35*righty_height)
         print(right)
         C.update()
 
@@ -83,6 +98,11 @@ class Question:
         qst.Righty.insert(1.0,"Correct answer: "+right)
         C.update()
         time.sleep(2)
+        if happy > 9 and happy < 12:
+            time.sleep(3)
+        if happy >=12:
+            time.sleep(5)
+
         create()
 
     def responseFalse(self):
@@ -101,7 +121,7 @@ class Question:
         if angry == 5 and happy == 0:
             qst.Qst.insert(1.0,angrrlist[1])
         if angry >=6 and happy == 0:
-            qst.Qst.insert(1.0,angrrlist[random.randint(3,angrrsvar)])
+            qst.Qst.insert(1.0,angrrlist[random.randint(3,angrrsvar)]) #Ifall du aldrig svarar rätt kommer du få slumpvalt valda svar från listan "angry_angry", dock inte de första tre för att jag specifikt använder dem
 
         qst.Righty.insert(1.0,"Correct answer: "+right)
         C.update()
