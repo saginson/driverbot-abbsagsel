@@ -6,21 +6,40 @@ angry = [
     "WHY CAN'T YOU JUST BE SMART LIKE YOUR \nSIBLINGS?! *cough* *cough* It's fine. I'm \nFINE.",
     "*Heavy breathing*",
     "I don't know... Is this even worthwhile? I mean, you clearly aren't learning anything.",
-    "I knew you'd get this one wrong."
+    "I knew you'd get this one wrong.",
+    "You're having so much fun with this, \naren't you?"
     
 ]
 angry_angry = [
-    "WHY CAN'T YOU JUST BE SMART LIKE YOUR \nSIBLINGS?! *cough* *cough* You know what? \nFine. The right answer to the next question \nis number three. Mexico. Número tres."
+    "WHY CAN'T YOU JUST BE SMART LIKE YOUR \nSIBLINGS?! *cough* *cough* You know what? \nFine. The right answer to the next question \nis number three. Mexico. Número tres.",
+    "LISTEN HERE, YOU LITTLE SHIT! DON'T \nJUST IGNORE MY ADVICE LIKE THAT!!",
+    "I told you. At least you got something\n right...",
+    "You're worthless.",
+    "Wrong answer. Expected? YES INDEED!",
+    "I sense a deep frustration inside \nyou... or is it just me? I'm not sure...",
+    "Oh I'm so disappointed..."
 ]
 happy = [
     "Correct answer!",
     "Wow! Another correct answer!",
-    "I didn't expect that you'd be so good at this!",
+    "I didn't expect that you'd be so \ngood at this!",
     "Correct! How admirable! *swoons*",
     "Oh mah God! CAN I ADOPT YOU?!",
     "You must be a MASTERMIND! *applause*",
-    "Honestly, I think the only right decision would be to change positions..."
+    "Honestly, I think the only right \ndecision would be to change positions...",
+    "Why are you better than me at my job? \n*sobs* So unfair...",
+    "How can you keep this much information \nin your head?",
+    "I told my mom about you and she \ndoesn't believe that you're real.",
+    "Am I sure that you're even human? \nThis is just so unbelievable..."
     
+]
+happy_angry = [
+    "Right, I guess...",
+    "Splendid. Right answer.",
+    "Oh, would you look at that?",
+    "Did someone tell you the right \nanswer?",
+    "Okay. Right answer.",
+    "No comment... Fine. Correct."
 ]
 
 
@@ -68,21 +87,60 @@ dic = {
     },
     "fråg9":{
         "Q": "The first time someone bought real-world goods with bitcoins, 10,000 of them (worth over $90 million today) were exchanged for what?",
-        "svar":["two pizzas","a novelty calendar","sneakers","luxury boat"],
+        "svar":["two pizzas","comic magazine","sneakers","luxury boat"],
         "template":[1,0,0,0],
     },
+    "fråg10":{
+        "Q": "Among land animals, what species has the largest eyes?",
+        "svar":["tarsier","gibbon","owl","ostrich"],
+        "template":[0,0,0,1],
+    },
+    "fråg11":{
+        "Q": "So far, which continent has hosted the Olympics the most times?",
+        "svar":["asia","europe","north america","africa"],
+        "template":[0,1,0,0],
+    },
+    "fråg12":{
+        "Q": "What app, a monster hit in 2016, has been credited with teaching Americans the metric system?",
+        "svar":["Snapchat","Tinder","Pokemon GO","Google Maps"],
+        "template":[0,0,1,0],
+    },
 }
+
+frågor = -1
+for fråga in dic:
+    frågor += 1
+angrsvar = -1
+for svar in angry:
+    angrsvar +=1
+angrrsvar = -1
+for svar in angry_angry:
+    angrrsvar +=1
+happrsvar = -1
+for svar in happy_angry:
+    happrsvar +=1
+
+
 # n=1
 # print(dic["fråg"+str(n)]["Q"])
 
-# :{
-#         "Q": "",
-#         "svar":[],
-#         "template":[],
-#     },
 
+    # "fråg":{
+    #     "Q": "",
+    #     "svar":["","","",""],
+    #     "template":[],
+    # },
+
+    # "fråg":{
+    #     "Q": "",
+    #     "svar":["",""],
+    #     "template":[],
+    # },
 
 
 #What international retail chain got its start in Älmhult, Sweden, and runs a museum dedicated to its history there?
 #If you order “murgh” from the menu at an Indian restaurant, what meat will you get?
 #The first time someone bought real-world goods with bitcoins, 10,000 of them (worth over US$90 million today) were exchanged for what?
+#Among land animals, what species has the largest eyes?
+#So far, which continent has hosted the Olympics the most times?
+#What app, a monster hit in 2016, has been credited with teaching Americans the metric system?
