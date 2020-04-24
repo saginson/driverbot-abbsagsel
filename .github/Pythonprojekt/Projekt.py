@@ -49,7 +49,6 @@ class Question:
         self.Righty.delete(1.0,END)
         kaputt() #tar bort alla knappar
         self.Qst.place(x=10,y=10) #placerar textfönstret
-        
         self.Qst.insert(1.0,question["Q"])
         # print(maxfråg)
         x = 0 #x ökar med 1 varje gång, motsvarar knappens plats och kan resettas 
@@ -72,7 +71,7 @@ class Question:
                 space = 20 #Då resettas space, fast till 20 för att den nya knappen på andra raden inte ska sättas längst ut utan istället 20 pixlar in
                 x=0 #Resettas då den första knappen på rad två har plats ett och inte tre, fyra, fem eller vad det nu kan vara
                 letters = 0 #Antal bokstäver resettas också då antalet från föregående rad annars är med
-            print(space)
+            # print(space)
             b.place(x=space,y=115+35*righty_height) #
             x+=1
             letters += len(answer)+2
@@ -82,12 +81,17 @@ class Question:
         print(right)
         C.update()
 
+    def kill(self):
+        self.Qst.destroy()
+        self.Righty.destroy()
+        C.update()
+
     def responseTrue(self):
         global happy
         global angry
         happy+=1
         # print("True!!")
-        if angry < 4: #Fram tills användaren får 4 fel kommer reaktionerna vara positiva
+        if angry <= 4: #Fram tills användaren får 4 fel kommer reaktionerna vara positiva
             qst.Qst.insert(1.0,happlist[happy-1])
         if angry == 4 and happy == 1:
             qst.Qst.insert(1.0,angrrlist[2]) #Då används den tredje raden i mitt dictionary "angry_angry"
@@ -100,8 +104,12 @@ class Question:
         time.sleep(2)
         if happy > 9 and happy < 12:
             time.sleep(3)
-        if happy >=12:
+        if happy >=12 and happy < 24:
             time.sleep(5)
+        if happy == 20:
+            time.sleep(3)
+        if happy == 24:
+            time.sleep(8)
 
         create()
 
@@ -110,7 +118,7 @@ class Question:
         global happy
         angry+=1
         # print("False!!")
-        if angry < 4:
+        if angry < 4 and happy >= 0:
             qst.Qst.insert(1.0,angrlist[angry-1])
         if angry >= 4 and happy > 0:
             qst.Qst.insert(1.0,angrlist[random.randint(3,angrsvar)])
@@ -148,8 +156,17 @@ def angryCheck(angry,checkAngry,mess):
    
 def create():
     global n
+    global qst
+    global happy
+    global angry
     n += 1 #n används under för att kontrollera vilken fråga som ska startas. fråg1, fråg2, fråg3 etc.
-    qst.open(dic["fråg"+str(n)]) #dic["fråg"+str(n)] sätts in i "question" i funktionen open() i klassen Question
+    print(n)
+    if n == 2:
+        quitToStart() #Avslutar quizzen och återvänder tillbörjan
+        
+    else:
+        qst.open(dic["fråg"+str(n)]) #dic["fråg"+str(n)] sätts in i "question" i funktionen open() i klassen Question
+       
 
 def createFalse():
     qst.Qst.delete(1.0,END)
@@ -158,9 +175,26 @@ def createTrue():
     qst.Qst.delete(1.0,END)
     qst.responseTrue()
 
+def quitToStart():
+    global n
+    global qst
+    global happy
+    global angry
+    kaputt()
+    qst.kill()
+    C.update()
+    # qst.kill()
+    ejntro = Intro() 
+    print("delete?")
+    ejntro.intro()
+    qst = Question()
+    n = 0
+    happy = 0
+    angry = 0
 
 #VARIABLES --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ejntro = Intro() #nu kan jag nå min Intro-klass genom "ejntro" och ha "ejntro.intro()" istället för "Intro.intro()" så att programmet och jag inte blir förvirrad
+
 
  
 #BEGINNING --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

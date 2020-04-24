@@ -18,7 +18,8 @@ angry_angry = [
     "You're worthless.",
     "Wrong answer. Expected? YES INDEED!",
     "I sense a deep frustration inside \nyou... or is it just me? I'm not sure...",
-    "Oh I'm so disappointed..."
+    "Oh I'm so disappointed...",
+    "If I'm happy for you? No."
 ]
 happy = [
     "Correct answer!",
@@ -28,6 +29,7 @@ happy = [
     "Oh wow! CAN I ADOPT YOU?!",
     "You must be a MASTERMIND! *applause*",
     "Honestly, I think the only right \ndecision would be to change positions...",
+    "How? Just how?!",
     "Why are you better than me at my job? \n*sobs* So unfair...",
     "How can you keep this much information \nin your head?",
     "I told my mom about you and she \ndoesn't believe that you're real.",
@@ -39,7 +41,11 @@ happy = [
     "I wasn't going to tell you this, but... \nI keep getting harrassed. Every day. \nIt's because I'm not giving them what they want!",
     "I'm starting to doubt that this is \ngoing to work...",
     "I'm nobody to you anyways, right? Yeah...",
-    "You won't need this. You're correct \nanyways. Always, always, always! This will be the last question. Goodbye. \n...\nI'm not crying... YOU'RE crying!"
+    "You won't need this. You're correct \nanyways. Always, always, always! This will be the last question. Goodbye. \n...\nI'm not crying... YOU'RE crying!",
+    "System: Correct!",
+    "You're still here? \n...\nI see there's more questions...",
+    "Don't worry about me. I'll forget about \nyou as soon as the quiz is over.",
+    "You answered every question correctly. \nUnbelievable... You know what? I'm happy \nthat I got to know you this short period of time. I hope you'll be back so I can see you \nagain, even if I won't remember you."
     
 ]
 happy_angry = [
@@ -135,7 +141,7 @@ dic = {
         "template":[0,0,0,1],
     },
     "fråg17":{
-        "Q": "The United States animal is a bald eagle. In this context, 'bald' doesn't mean 'hairless.' \nThe word actually comes from an Old English word meaning what?",
+        "Q": "The United States animal is a bald eagle. In this context, 'bald' doesn't mean 'hairless.' The word actually comes from an Old English word meaning what?",
         "svar":["Beautiful","Head-on","White","Majestic"],
         "template":[0,0,1,0],
     },
@@ -150,7 +156,7 @@ dic = {
         "template":[0,0,0,1],
     },
     "fråg20":{
-        "Q": "True or false? A duel for three people is called a thruel.",
+        "Q": "A duel for three people is called a thruel. True or false?",
         "svar":["True","False"],
         "template":[1,0],
     },
@@ -158,6 +164,21 @@ dic = {
         "Q": "Which country has the oldest continuously used national flag?",
         "svar":["Denmark","Austria","Albania","Latvia"],
         "template":[1,0,0,0],
+    },
+    "fråg22":{
+        "Q": "What real-life shipwreck inspired Herman Melville's 'Moby-Dick'?",
+        "svar":["The Two Brothers","The Charles Carroll","The Essex"],
+        "template":[0,0,1],
+    },
+    "fråg23":{
+        "Q": "These birds are excellent parents and can find their way back to their nest from 1300 miles away.",
+        "svar":["Pigeons","Starlings","Blue Jays","Hawks"],
+        "template":[1,0,0,0],
+    },
+    "fråg24":{
+        "Q": "What is the no 1 topping for pizzas in Australia?",
+        "svar":["Pineapple","Eggs","Bananas","Bacon"],
+        "template":[0,1,0,0],
     },
 }
 
@@ -207,3 +228,6 @@ for svar in happy_angry:
 #How many legitimate children did King George III have?
 #True or false? A duel for three people is called a thruel.
 #Which country has the oldest continuously used national flag?
+#What real-life shipwreck inspired Herman Melville's 'Moby-Dick'?
+#These birds are excellent parents and can find their way back to their nest from 1300 miles away.
+#What is the no 1 topping for pizzas in Australia?
