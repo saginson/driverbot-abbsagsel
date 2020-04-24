@@ -42,7 +42,7 @@ class Intro:
 class Question:
     def __init__(self):
         self.Qst = Text(master, width=45, height=5) #öppnar textfönstret och döper det till "Qst"
-        self.Righty = Text(master, width=15, height=2) #öppnar textfönstret för rätt svar som döps till "Righty"
+        self.Righty = Text(master, width=20, height=2) #öppnar textfönstret för rätt svar som döps till "Righty"
     def open(self, question):
         global right
         self.Qst.delete(1.0,END) #rensar textfönstret
@@ -52,28 +52,28 @@ class Question:
         
         self.Qst.insert(1.0,question["Q"])
         # print(maxfråg)
-        x = 0 #m ökar med 1 varje gång och kan resettas 
+        x = 0 #x ökar med 1 varje gång, motsvarar knappens plats och kan resettas 
         letters = 0 #Motsvarar antal bokstäver i knappen
         space = 0
         righty_height = 0 #Y-värdet för rutan med rätt svar
         #asgdwajkdgaskjdasg
-        for m , answer in enumerate(question["svar"]): #för varje svar i listan "svar"
+        for m, answer in enumerate(question["svar"]): #för varje svar i listan "svar" (som då får ett värde beroende på platsen)
             # question["template"][m]
             # print(question["template"][m])
             if question["template"][m] == 1: #variabeln m står för platsen i listan "template" som finns i min dictionary, programmet kollar då en plats i taget och kollar ifall det är en etta eller nolla
-                b = Button(C, text=answer.capitalize(), command = createTrue)
+                b = Button(C, text=answer, command = createTrue)
                 right = answer
             if question["template"][m] == 0: # 1 är rätt, 0 är fel
-                b = Button(C, text=answer.capitalize(), command = createFalse) #exempelvis ifall objektet är 0, då skapas en knapp med svaret som är fel som leder till funktionen som hör till felaktiga svar
-            space = 20+20*x+letters*6
-            if space+len(answer) > 300:
+                b = Button(C, text=answer, command = createFalse) #exempelvis ifall objektet är 0, då skapas en knapp med svaret som är fel som leder till funktionen som hör till felaktiga svar
+            space = 20+20*x+letters*6 #Space motsvarar platsen som alla knappar tar på en rad
+            if space+len(answer) > 300: #Denna if-loop avgör ifall knappen är för stor för ena raden och gör i så fall en ny rad
                 print('IT TOO BIG')
                 righty_height += 1
-                space = 20
-                x=0
-                letters = 0
+                space = 20 #Då resettas space, fast till 20 för att den nya knappen på andra raden inte ska sättas längst ut utan istället 20 pixlar in
+                x=0 #Resettas då den första knappen på rad två har plats ett och inte tre, fyra, fem eller vad det nu kan vara
+                letters = 0 #Antal bokstäver resettas också då antalet från föregående rad annars är med
             print(space)
-            b.place(x=space,y=115+35*righty_height)
+            b.place(x=space,y=115+35*righty_height) #
             x+=1
             letters += len(answer)+2
             # print(letters)
@@ -95,7 +95,7 @@ class Question:
             qst.Qst.insert(1.0,happrlist[random.randint(0,happrsvar)]) #I mitt dictionary happy_angry har jag reaktioner som då väljs randomly så fort användaren svarat fel mer än 4 gånger
 
 
-        qst.Righty.insert(1.0,"Correct answer: "+right)
+        qst.Righty.insert(1.0,"Correct answer: \n"+right)
         C.update()
         time.sleep(2)
         if happy > 9 and happy < 12:
@@ -123,7 +123,7 @@ class Question:
         if angry >=6 and happy == 0:
             qst.Qst.insert(1.0,angrrlist[random.randint(3,angrrsvar)]) #Ifall du aldrig svarar rätt kommer du få slumpvalt valda svar från listan "angry_angry", dock inte de första tre för att jag specifikt använder dem
 
-        qst.Righty.insert(1.0,"Correct answer: "+right)
+        qst.Righty.insert(1.0,"Correct answer: \n"+right)
         C.update()
         time.sleep(2)
         if angry == 4 and happy == 0:

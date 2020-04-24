@@ -2,7 +2,7 @@
 angry = [
     "Oh no. You didn't actually know the answer?",
     "Another answer you didn't know, huh?",
-    "OF COURSE you didn't know the answer! Why do I even bother with you?",
+    "Oh, did I miss something? Hmm... Nope, wrong.",
     "WHY CAN'T YOU JUST BE SMART LIKE YOUR \nSIBLINGS?! *cough* *cough* It's fine. I'm \nFINE.",
     "*Heavy breathing*",
     "I don't know... Is this even worthwhile? I mean, you clearly aren't learning anything.",
@@ -23,9 +23,9 @@ angry_angry = [
 happy = [
     "Correct answer!",
     "Wow! Another correct answer!",
-    "I didn't expect that you'd be so \ngood at this!",
-    "Correct! How admirable! *swoons*",
-    "Oh mah God! CAN I ADOPT YOU?!",
+    "Another score for you!",
+    "Correct! Again!",
+    "Oh wow! CAN I ADOPT YOU?!",
     "You must be a MASTERMIND! *applause*",
     "Honestly, I think the only right \ndecision would be to change positions...",
     "Why are you better than me at my job? \n*sobs* So unfair...",
@@ -36,8 +36,10 @@ happy = [
     "People have begged me to be introduced \nto you. They see you as some sort of God, \nor something... I don't know.",
     "I've put up an altar outside my house. \n What? I'm only doing it to keep the \npeople at bay, you know?",
     "They... They tried breaking into my \nhouse. With no success, of course.",
+    "I wasn't going to tell you this, but... \nI keep getting harrassed. Every day. \nIt's because I'm not giving them what they want!",
     "I'm starting to doubt that this is \ngoing to work...",
-    "You won't need this. You're correct \nanyways. Always. This will be the last \nquestion. Goodbye. \n...\nI'm not crying... YOU'RE crying!"
+    "I'm nobody to you anyways, right? Yeah...",
+    "You won't need this. You're correct \nanyways. Always, always, always! This will be the last question. Goodbye. \n...\nI'm not crying... YOU'RE crying!"
     
 ]
 happy_angry = [
@@ -54,27 +56,27 @@ happy_angry = [
 dic = {
     "fråg1":{
         "Q": "First question, then...\nA semla is a traditional sweet roll that for instance is made in Sweden. If eaten together with warm milk, what is the Swedish word for it?",
-        "svar": ["hetvägg","samke","grötbulle"],
+        "svar": ["Hetvägg","Samke","Grötbulle"],
         "template": [1,0,0],
     },
     "fråg2":{
         "Q": "Second question! In a 2010 study, people \nfound more mistakes when they marked essays \nwith a pen of what color?",
-        "svar":["green","red","blue","magenta"],
+        "svar":["Green","Red","Blue","Magenta"],
         "template":[0,1,0,0],
     },
     "fråg3":{
         "Q": "Moving on to the third question! What \nprincess was traditionally called \nBadr al-Budur before Disney renamed her?",
-        "svar":["jasmine","merida","anna","belle"],
+        "svar":["Jasmine","Merida","Anna","Belle"],
         "template":[1,0,0,0],
     },
     "fråg4":{
         "Q": "Do you like the Swedish questions? In \nSwedish, a skvader is a rabbit with what \nunusual feature?",
-        "svar":["wings","glasses","no ears","giant feet"],
+        "svar":["Wings","Glasses","No ears","Giant feet"],
         "template":[1,0,0,0],
     },
     "fråg5":{
         "Q": "More countries! Which country’s flag featuresan eagle eating a snake?",
-        "svar":["mozambique","dominica","mexico","guam"],
+        "svar":["Mozambique","Dominica","Mexico","Guam"],
         "template":[0,0,1,0],
     },
     "fråg6":{
@@ -94,17 +96,17 @@ dic = {
     },
     "fråg9":{
         "Q": "The first time someone bought real-world goods with bitcoins, 10,000 of them (worth over $90 million today) were exchanged for what?",
-        "svar":["two pizzas","comic magazine","sneakers","luxury boat"],
+        "svar":["Two pizzas","Comic magazine","Sneakers","Luxury boat"],
         "template":[1,0,0,0],
     },
     "fråg10":{
         "Q": "Among land animals, what species has the largest eyes?",
-        "svar":["tarsier","gibbon","owl","ostrich"],
+        "svar":["Tarsier","Gibbon","Owl","Ostrich"],
         "template":[0,0,0,1],
     },
     "fråg11":{
         "Q": "So far, which continent has hosted the Olympics the most times?",
-        "svar":["asia","europe","north america","africa"],
+        "svar":["Asia","Europe","North America","Africa"],
         "template":[0,1,0,0],
     },
     "fråg12":{
@@ -121,6 +123,41 @@ dic = {
         "Q": "What's the oldest continuously inhabited city in the world?",
         "svar":["Istanbul, Turkey","Jerusalem","Athens, Greece","Damascus, Syria"],
         "template":[0,0,0,1],
+    },
+    "fråg15":{
+        "Q": "How many of the speeches in Shakespeare's plays are recited by women?",
+        "svar":["33 percent","17 percent","53 percent","23 percent"],
+        "template":[0,1,0,0],
+    },
+    "fråg16":{
+        "Q": "In which country was the largest-known Tyrannosaurus rex skeleton found?",
+        "svar":["United States","Russia","China","Canada"],
+        "template":[0,0,0,1],
+    },
+    "fråg17":{
+        "Q": "The United States animal is a bald eagle. In this context, 'bald' doesn't mean 'hairless.' \nThe word actually comes from an Old English word meaning what?",
+        "svar":["Beautiful","Head-on","White","Majestic"],
+        "template":[0,0,1,0],
+    },
+    "fråg18":{
+        "Q": "How many million scent receptors do dogs have in their noses?",
+        "svar":["50 million","100 million","150 million","300 million"],
+        "template":[0,0,0,1],
+    },
+    "fråg19":{
+        "Q": "How many legitimate children did King George III have?",
+        "svar":["5","9","12","15"],
+        "template":[0,0,0,1],
+    },
+    "fråg20":{
+        "Q": "True or false? A duel for three people is called a thruel.",
+        "svar":["True","False"],
+        "template":[1,0],
+    },
+    "fråg21":{
+        "Q": "Which country has the oldest continuously used national flag?",
+        "svar":["Denmark","Austria","Albania","Latvia"],
+        "template":[1,0,0,0],
     },
 }
 
@@ -163,3 +200,10 @@ for svar in happy_angry:
 #What app, a monster hit in 2016, has been credited with teaching Americans the metric system?
 #There are an estimated 1,864 of which bear species in the wild?
 #What's the oldest continuously inhabited city in the world?
+#How many of the speeches in Shakespeare's plays are recited by women?
+#In which country was the largest-known Tyrannosaurus rex skeleton found?
+#The United States animal is a bald eagle... but in this context, "bald" doesn't mean "hairless." The "bald" part of the bird's name comes from an Old English word meaning what?
+#How many million scent receptors do dogs have in their noses?
+#How many legitimate children did King George III have?
+#True or false? A duel for three people is called a thruel.
+#Which country has the oldest continuously used national flag?
