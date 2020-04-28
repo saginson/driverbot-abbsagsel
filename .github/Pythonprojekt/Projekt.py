@@ -43,6 +43,7 @@ class Question:
     def __init__(self):
         self.Qst = Text(master, width=45, height=5) #öppnar textfönstret och döper det till "Qst"
         self.Righty = Text(master, width=20, height=2) #öppnar textfönstret för rätt svar som döps till "Righty"
+        #STOPPADE EN QUIT-BTN HÄR MEN FUNKTIONEN LÄNKAD TILL command 'is not defined' TROTS ATT JAG TILL OCH MED STOPPADE DEN I KLASSEN MED print("helo") SOM ENDA KODRADEN INUTI
     def open(self, question):
         global right
         self.Qst.delete(1.0,END) #rensar textfönstret
