@@ -1,4 +1,3 @@
-
 angry = [
     "Oh no. You didn't actually know the answer?",
     "Another answer you didn't know, huh?",
@@ -7,7 +6,7 @@ angry = [
     "*Heavy breathing*",
     "I don't know... Is this even worthwhile? I mean, you clearly aren't learning anything.",
     "I knew you'd get this one wrong.",
-    "You're having so much fun with this, \naren't you?",
+    "Is it funny to see me irritated?",
     "Well, this is depressing."
     
 ]
@@ -48,16 +47,45 @@ happy = [
     "You answered every question correctly. \nUnbelievable... You know what? I'm happy \nthat I got to know you this short period of time. I hope you'll be back so I can see you \nagain, even if I won't remember you."
     
 ]
+
 happy_angry = [
     "Right, I guess...",
     "Splendid. Right answer.",
     "Oh, would you look at that?",
     "Did someone tell you the right \nanswer?",
     "Okay. Right answer.",
-    "No comment... Fine. Correct."
+    "No comment... Fine. Correct.",
+    "As much as it pains me to say this. It's correct."
 ]
 
+dev = [
+    "Did you not even take the hint about Mexico? You are EVIL!",
+    "One right answer. You followed the hint, right?",
+    "Two right answers? Could be worse. Thanks for playing!",
+    "Three right answers? Was it fun to see the narrator so frustrated?",
+    "Four right answers? That's... something. I've seen worse.",
+    "Five right answers... But maybe you learned something new?",
+    "Six right answers. 25% right. Which one sounds best? I'd say the second.",
+    "Seven right answers. You should know that I have an individual message for each score. It's tiring...",
+    "Eight right answers? Wow, 33% right! Maybe a third sounds better?",
+    "Nine right answers? Did you learn something new?",
+    "Ten right answers! Two digits, huh? Did you get the result you wanted?",
+    "Eleven right answers. Next time the digits match are at 22. So far away...",
+    "Twelve right answers! 50% right. Good job!",
+    "Thirteen right answers! Lucky but unlucky!",
+    "Fourteen right answers. Such a pretty number...",
+    "Fifteen right answers. I mean, if I made 30 questions you'd be halfway.",
+    "Sixteen right answers. Being 67% right is something to be proud of!",
+    "Seventeen right answers! It's getting hotter!",
+    "Eighteen right answers! 75%! You're almost there!",
+    "Nineteen right answers. How does it feel, being so close to your twenties?",
+    "Twenty right answers! That narrator... I'll restart him right away! You don't believe in what he said, right?",
+    "Twenty-one right answers! You didn't hear anything suspicious about my narrator, right? I've heard some things before...",
+    "Twenty-two right answers! Don't trust what my narrator is saying! I'll send him on repair some day this week. I always find my self postponing it...",
+    "Twenty-three right answers!? So close! Don't let my narrator hinder you from trying again. It's AI, they're weird.", 
+    "Wow. You completed the quizz! Sorry about that narrator... I'll restart him next time, don't worry! Oh! There's something I want to give you as a reward. A link! https://www.youtube.com/watch?v=6-HUgzYPm9g",
 
+]
 
 dic = {
     "fråg1":{
@@ -182,6 +210,12 @@ dic = {
     },
 }
 
+
+
+
+
+
+
 frågor = -1
 for fråga in dic:
     frågor += 1
@@ -194,8 +228,6 @@ for svar in angry_angry:
 happrsvar = -1
 for svar in happy_angry:
     happrsvar +=1
-
-
 # n=1
 # print(dic["fråg"+str(n)]["Q"])
 
