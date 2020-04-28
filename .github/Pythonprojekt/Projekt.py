@@ -113,6 +113,9 @@ class Question:
         global happy
         global angry
         happy+=1
+        freeze()
+        self.next_btn = Button(C, bg= 'green', text = 'Next', command = create)
+        self.next_btn.place(x=300,y=10)
         # print("True!!")
         if angry <= 4: #Fram tills användaren får 4 fel kommer reaktionerna vara positiva
             qst.Qst.insert(1.0,happlist[happy-1])
@@ -124,21 +127,23 @@ class Question:
 
         qst.Righty.insert(1.0,"Correct answer: \n"+right)
         C.update()
-        time.sleep(2)
-        if happy > 9 and happy < 12:
-            time.sleep(3)
-        if happy >=12 and happy < 24:
-            time.sleep(5)
-        if happy == 20:
-            time.sleep(3)
-        if happy == 24:
-            time.sleep(8)
-        create()
+        # time.sleep(2)
+        # if happy > 9 and happy < 12:
+        #     time.sleep(3)
+        # if happy >=12 and happy < 24:
+        #     time.sleep(5)
+        # if happy == 20:
+        #     time.sleep(3)
+        # if happy == 24:
+        #     time.sleep(8)
 
     def responseFalse(self):
         global angry
         global happy
         angry+=1
+        freeze()
+        self.next_btn = Button(C, bg= 'green', text = 'Next', command = create)
+        self.next_btn.place(x=300,y=10)
         if angry < 4 and happy >= 0:
             qst.Qst.insert(1.0,angrlist[angry-1]) #Så länge du inte svarat mer än fyra fel kommer du få de tre första raderna från listan "angry", därefter kommer den nedan
         if angry >= 4 and happy > 0:
@@ -154,10 +159,9 @@ class Question:
 
         qst.Righty.insert(1.0,"Correct answer: \n"+right) #Skriver in det korrekta svaret i textrutan under knapparna, som heter "Righty"
         C.update()
-        time.sleep(2)
-        if angry == 4 and happy == 0:
-            time.sleep(2)
-        create()
+        # time.sleep(2)
+        # if angry == 4 and happy == 0:
+        #     time.sleep(2)
 
 class Ending:
     def __init__(self):
@@ -194,8 +198,10 @@ end = Ending()
 #STANDALONE FUNCTIONS ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def kaputt():
     for widget in C.winfo_children(): #För varje knapp som skapats:
-            widget.destroy() #Förstör den
-
+        widget.destroy() #Förstör den
+def freeze():
+    for widget in C.winfo_children():
+        widget.config(state=DISABLED)
 # def happyCheck(happy,checkHappy,mess):
 #     if happy == checkHappy:
 #         qst.Qst.insert(1.0,mess)
@@ -203,6 +209,7 @@ def kaputt():
 #     if angry == checkAngry:
 #         qst.Qst.insert(1.0,mess)
    
+
 def create():
     global n
     global qst
