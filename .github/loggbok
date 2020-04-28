@@ -66,3 +66,14 @@
     Lade till extra reaktioner på felaktiga samt rätta svar. Nu 
     slumpartas även svaren från de olika kategorierna beroende 
     på max antalet reaktioner i listan. 
+2020-04-28
+    Jag skulle säga att spelet är klart nu. Jag har gjort att 
+    efter 24 frågor får spelaren se hur många rätta respektiva
+    felaktiga svar den hade samt få ett score. Det går att spara 
+    i en fil som heter save och lätt få tag i vid huvudmenyn. 
+    Under slutfunktionen går det även att rensa sitt sparade 
+    high score. Det går även att avsluta till huvudmenyn mitt
+    i frågorna och stänga ner programmet helt från den menyn. 
+    Allra sist på dagen lade jag till små kommentarer från mig
+    som användaren får när spelet är klart beroende på hur många
+    rätta svar den fick.
