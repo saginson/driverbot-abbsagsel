@@ -83,7 +83,7 @@ dev = [
     "Twenty-one right answers! You didn't hear anything suspicious about my narrator, right? I've heard some things before...",
     "Twenty-two right answers! Don't trust what my narrator is saying! I'll send him on repair some day this week. I always find my self postponing it...",
     "Twenty-three right answers!? So close! Don't let my narrator hinder you from trying again. It's AI, they're weird.", 
-    "Wow. You completed the quizz! Sorry about that narrator... I'll restart him next time, don't worry! Oh! There's something I want to give you as a reward. A link! https://www.youtube.com/watch?v=6-HUgzYPm9g",
+    "Wow. You completed the quiz! Sorry about that narrator... I'll restart him next time, don't worry! Oh! There's something I want to give you as a reward. A link! https://www.youtube.com/watch?v=6-HUgzYPm9g",
 
 ]
 
