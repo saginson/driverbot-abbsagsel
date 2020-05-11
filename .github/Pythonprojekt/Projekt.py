@@ -8,23 +8,22 @@ import random
 
 #VARIABLES ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 master = Tk()
-    #Canvas
-C = Canvas(master, bg='grey',height=600,width=400)
+C = Canvas(master, bg='grey',height=600,width=400) #Fönstret är basen för hela interfacen
 C.pack()
-dic = databas.dic #döper om min dictionary från databasen
-happlist = databas.happy #döper om listan "happy" som hämtas från databasen
-angrlist = databas.angry #samma som ovan, fast för "angry"
+dic = databas.dic #Underlättar för mig då det blir mindre att skriva
+happlist = databas.happy #Samma som ovan
+angrlist = databas.angry #samma som ovan
 angrrlist = databas.angry_angry #samma som ovan
 happrlist = databas.happy_angry # samma som ovan
-n = 0 #variabeln som förklarar vilken fråga som ska presenteras (visas mer i funktionen create())
-happy = 0 #hur många rätta svar användaren fått
-angry = 0 #hur många felaktiga svar användaren fått
-right = "" #Rätta svaret har den här variabeln, självklart finns inget rätt svar innan det har börjat
-maxfråg = databas.frågor #Hur många frågor det finns totalt (första frågan har värdet 0)
-angrsvar = databas.angrsvar #Hur många svar som finns i listan "angry", som ovan har första svaret värde 0
-angrrsvar = databas.angrrsvar #Hur många svar som finns i listan "angry_angry", som ovan har första svaret värde 0
-happrsvar = databas.happrsvar #Hur många svar som finns i listan "happy_angry", som ovan har första svaret värde 0
-dev = databas.dev #Kommentarerna från mig som spelaren får allra sist i spelet
+n = 0 #användningsområdet visas i funktionen create()
+happy = 0 #fungerar som en räknare för hur många rätta svar användaren fått
+angry = 0 # --II-- hur många felaktiga svar användaren fått
+right = "" #variabelns värde är det nuvarande rätta svaret, för att lätt kunna få tag på det
+maxfråg = databas.frågor #variabelns värde motsvarar hur många frågor det finns totalt
+angrsvar = databas.angrsvar #variabelns värde motsvarar hur många svar som finns i listan "angry"
+angrrsvar = databas.angrrsvar #variabelns värde motsvarar hur många svar som finns i listan "angry_angry"
+happrsvar = databas.happrsvar #variabelns värde motsvarar hur många svar som finns i listan "happy_angry"
+dev = databas.dev #Förkortningen underlättar för mig
 
 #CLASSES AND FUNCTIONS ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 class Intro:
@@ -33,23 +32,17 @@ class Intro:
         self.start_btn = Button(C, text='Start', command = create)
         self.quit_game = Button(C, text='Terminate', command = quit)
         self.check_highscore = Button(C, text='Check Current High Score', width=22,command = toggleToggle)
-        # self.t_btn = Button(C, text="Check Current High Score", width=5, command=stupid)
         
     def intro(self):
-        # C.create_window(100, 120, window=self.start_btn)
         self.start_btn.place(x=50,y=110)
         self.quit_game.place(x=275, y=110)
         self.introtext.place(x=10, y=10)
         self.check_highscore.place(x=100, y=110)
-        # self.t_btn.place(x=10,y=400)
         self.introtext.insert(1.0, "Welcome to...\nThe Personal and Very Customized quiz-night!\n*cheering* Press a button. Any button!\n")
-        # switch_variable = StringVar(value="off")
-        # off_button = Radiobutton(C, text="Off", variable=switch_variable, indicatoron=False, value="off", width=8)
-        # off_button.place(x=10,y=130)
-        C.update()
+        C.update() #Här uppdateras canvasen så att användaren ser förändringarna
 
     def toggle_text(self):
-        global data
+        global data #Jag gör många värden globala i funktioner då function parameters inte är kompatibla med tkinter
         if self.check_highscore["text"] == "Check Current High Score":
             self.check_highscore["text"] = "Current High Score: "+data
         else:
@@ -58,29 +51,24 @@ class Intro:
 
 class Question:
     def __init__(self):
-        self.Qst = Text(master, width=45, height=5) #öppnar textfönstret och döper det till "Qst"
-        self.Righty = Text(master, width=20, height=2) #öppnar textfönstret för rätt svar som döps till "Righty"
-        #STOPPADE EN QUIT-BTN HÄR MEN FUNKTIONEN LÄNKAD TILL command 'is not defined' TROTS ATT JAG TILL OCH MED STOPPADE DEN I KLASSEN MED print("helo") SOM ENDA KODRADEN INUTI
+        self.Qst = Text(master, width=45, height=5) #textfönstret där frågorna syns
+        self.Righty = Text(master, width=20, height=2) #textfönstret med rätt svar
     def open(self, question):
         global right
         global clos
-        clos = qst #Variabeln "clos" kan antingen vara qst eller end beroende på ifall användaren vill återgå till menyn från klassen Question eller Ending, används i funktionen "quitToStart"
-        self.Qst.delete(1.0,END) #rensar textfönstret
+        clos = qst #Variabeln "clos" kan antingen vara qst eller end beroende på ifall användaren vill återgå till menyn från klassen Question eller Ending, används i funktionen "closeCurrent"
+        self.Qst.delete(1.0,END) #rensar textfönstret för att texten annars inte kan ersättas
         self.Righty.delete(1.0,END)
-        kaputt() #tar bort alla knappar
+        kaputt() #tar bort alla knappar så att de inte kolliderar med de nya som skapas
         self.i_want_out = Button(C, text='Quit', command = quitToStart) #Knappen för att avsluta och återgå till startmenyn
         self.i_want_out.place(x=340,y=10)
         self.Qst.place(x=10,y=40) #placerar textfönstret
         self.Qst.insert(1.0,question["Q"])
-        # print(maxfråg)
         x = 0 #x ökar med 1 varje gång, motsvarar knappens plats och kan resettas 
         letters = 0 #Motsvarar antal bokstäver i knappen
         space = 0
         righty_height = 0 #Y-värdet för rutan med rätt svar
-        #asgdwajkdgaskjdasg
         for m, answer in enumerate(question["svar"]): #för varje svar i listan "svar" (som då får ett värde beroende på platsen)
-            # question["template"][m]
-            # print(question["template"][m])
             if question["template"][m] == 1: #variabeln m står för platsen i listan "template" som finns i min dictionary, programmet kollar då en plats i taget och kollar ifall det är en etta eller nolla
                 b = Button(C, text=answer, command = createTrue)
                 right = answer
@@ -93,11 +81,9 @@ class Question:
                 space = 20 #Då resettas space, fast till 20 för att den nya knappen på andra raden inte ska sättas längst ut utan istället 20 pixlar in
                 x=0 #Resettas då den första knappen på rad två har plats ett och inte tre, fyra, fem eller vad det nu kan vara
                 letters = 0 #Antal bokstäver resettas också då antalet från föregående rad annars är med
-            # print(space)
             b.place(x=space,y=135+35*righty_height) #
             x+=1
             letters += len(answer)+2
-            # print(letters)
 
         self.Righty.place(x=10,y=170+35*righty_height)
         print(right)
@@ -116,7 +102,6 @@ class Question:
         freeze()
         self.next_btn = Button(C, bg= 'green', text = 'Next', command = create)
         self.next_btn.place(x=300,y=10)
-        # print("True!!")
         if angry <= 4: #Fram tills användaren får 4 fel kommer reaktionerna vara positiva
             qst.Qst.insert(1.0,happlist[happy-1])
         if angry == 4 and happy == 1:
@@ -127,15 +112,6 @@ class Question:
 
         qst.Righty.insert(1.0,"Correct answer: \n"+right)
         C.update()
-        # time.sleep(2)
-        # if happy > 9 and happy < 12:
-        #     time.sleep(3)
-        # if happy >=12 and happy < 24:
-        #     time.sleep(5)
-        # if happy == 20:
-        #     time.sleep(3)
-        # if happy == 24:
-        #     time.sleep(8)
 
     def responseFalse(self):
         global angry
@@ -159,9 +135,6 @@ class Question:
 
         qst.Righty.insert(1.0,"Correct answer: \n"+right) #Skriver in det korrekta svaret i textrutan under knapparna, som heter "Righty"
         C.update()
-        # time.sleep(2)
-        # if angry == 4 and happy == 0:
-        #     time.sleep(2)
 
 class Ending:
     def __init__(self):
@@ -202,12 +175,6 @@ def kaputt():
 def freeze():
     for widget in C.winfo_children():
         widget.config(state=DISABLED)
-# def happyCheck(happy,checkHappy,mess):
-#     if happy == checkHappy:
-#         qst.Qst.insert(1.0,mess)
-# def angryCheck(angry,checkAngry,mess):
-#     if angry == checkAngry:
-#         qst.Qst.insert(1.0,mess)
    
 
 def create():
