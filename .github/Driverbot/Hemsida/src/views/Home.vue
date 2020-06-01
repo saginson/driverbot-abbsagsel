@@ -27,25 +27,52 @@
 
 
         <!-- <v-container grid-list-md> -->
-          <!-- <v-row> -->
+          <v-row no-gutters style="height: 150px;">
+          <v-container color="rgb(255, 0, 0, 0.2)">
+            <v-btn class="ma-2" 
+            text icon color="orange lighten-2" 
+            switchy = 0
+            @click="valueChange()">
+            <v-icon color="white" >trending_down</v-icon>
+            </v-btn>
+
+            <v-btn class="ma-2" 
+            text icon color="orange lighten-2" 
+            switchy = 1
+            @click="valueChange()">
+            <v-icon color="white" >trending_up</v-icon>
+            </v-btn>
+
+            </v-container>
+            </v-row>
+          <v-spacer></v-spacer>
       <v-flex xs4>
-      <v-col
+      <!-- <v-col
         cols="1"
         style="min-width: 500px; max-width: 100%;"
         class="flex-grow-1 flex-shrink-0"
-      >
+      > -->
+      <v-row no-gutters style="height: 150px;">
+      <v-container color="rgb(255, 0, 0, 0.2)">
+        <!-- <v-row
+      class="mb-6"
+    > -->
+    <!-- <v-col lg="2" cols="1"> -->
       <v-slider
+        vertical
         v-model="state"
         :tick-labels ="directions"
         max="2"
         min="0"
         step="1"
         ticks="always"
-        tick-size="4"
+        tick-size="3"
         color="white"
         dark
+        height="300"
       ></v-slider>
-      </v-col>
+      </v-container>
+      </v-row>
       </v-flex>
       
       <!-- </v-row> -->
@@ -59,8 +86,8 @@
         </v-btn>
         </v-flex>
         <v-flex>
-        <v-row>
-          <v-card class="justify-end">
+
+          <!-- <v-card class="justify-end">
           <v-slider
             inverse-label
             label="Brightness"
@@ -69,7 +96,7 @@
             max="1023"
             min="4"
           ></v-slider>
-          </v-card>
+          </v-card> -->
 
         </v-row>
         </v-flex>
@@ -92,7 +119,10 @@ export default {
           'Stop',
           'Forward',
         ],
+    letters:["b","s","f","l","r"],
+    switchy: 0,
     state: 1,
+
     // show: true,
     absolute: true,
     opacity: 1,
@@ -110,13 +140,14 @@ export default {
     this.connect();
     setInterval(() => {
       this.connect();
-    //   console.log(this.connected); //under testningen behövdes denna så att användaren kunde se i konsollen ifall webbsidan connectat
+      console.log(this.connected); //under testningen behövdes denna så att användaren kunde se i konsollen ifall webbsidan connectat
+      console.log("helo");
     }, 2000); //webbsidan försöker ansluta varannan sekund för att motverka avbrott
-  
+    console.log("heloo");
     this.dir();
     setInterval(() => {
       this.dir();
-      // console.log("helo");
+      console.log("helooo");
     }, 100);
   },
 
@@ -163,9 +194,26 @@ export default {
     //     this.message.toString()
     //   );
     // },
+
+    valueChange() {
+      let value = 0;
+      if (switchy == 1){ 
+        value+=10;
+      };
+      if (switchy == 0){
+        value-=10;
+      };
+
+      if (value > 1024){
+        value = 1024
+      };
+      console.log(value);
+    },
+
     dir() {
       //skickar ett värde på 1 eller 0 till databas, ledstripp är av eller på
-      this.message = this.state;
+      this.message = this.letters[state];
+      console.log(message);
       this.client.publish(
         "saga.sellin@abbindustrigymnasium.se/direction",
         this.message.toString()
