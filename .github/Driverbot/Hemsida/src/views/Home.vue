@@ -31,15 +31,13 @@
           <v-container color="rgb(255, 0, 0, 0.2)">
             <v-btn class="ma-2" 
             text icon color="orange lighten-2" 
-            switchy = 0
-            @click="valueChange()">
+            @click="valueChange(0)">
             <v-icon color="white" >trending_down</v-icon>
             </v-btn>
 
             <v-btn class="ma-2" 
             text icon color="orange lighten-2" 
-            switchy = 1
-            @click="valueChange()">
+            @click="valueChange(1)">
             <v-icon color="white" >trending_up</v-icon>
             </v-btn>
 
@@ -79,10 +77,14 @@
       <!-- </v-container> -->
       <v-flex xs4>
         <v-card id="gon">helo</v-card>
-        <v-btn class="ma-2" 
-          text icon color="orange lighten-2" 
-          @click= "overlay = !overlay">
-        <v-icon color="white" >info</v-icon>
+        <v-btn 
+          dark
+          :loading="loading"
+          :disabled="loading"
+          class="ma-2" 
+          text icon color="orange lighten-2"
+          @click= "overlay = !overlay;loader = 'loading';dir(state)">
+        <v-icon color="white" >cloud_upload</v-icon>
         </v-btn>
         </v-flex>
         <v-flex>
@@ -112,18 +114,23 @@
 /* eslint-disable */
 var mqtt = require("mqtt"),
   url = require("url");
+let value = 0;
+let mess = "";
+let letters = ["b","s","f","l","r"];
+
 export default {
   data: () => ({
+  loader: null,
+  loading: false,
+    
     directions: [
           'Backwards',
           'Stop',
           'Forward',
         ],
-    letters:["b","s","f","l","r"],
+    
     switchy: 0,
     state: 1,
-
-    // show: true,
     absolute: true,
     opacity: 1,
     overlay: false,
@@ -134,23 +141,32 @@ export default {
     pass: "MQTTPAS",
     message: ""
   }),
-
+  
   created() {
     //vad som ska hända när hemsidan först öppnas/startas
     this.connect();
     setInterval(() => {
       this.connect();
       console.log(this.connected); //under testningen behövdes denna så att användaren kunde se i konsollen ifall webbsidan connectat
-      console.log("helo");
+      // console.log("helo");
     }, 2000); //webbsidan försöker ansluta varannan sekund för att motverka avbrott
-    console.log("heloo");
+    // console.log("heloo");
     this.dir();
     setInterval(() => {
       this.dir();
-      console.log("helooo");
+      // console.log("helooo");
     }, 100);
   },
+  watch: {
+        loader () {
+          const l = this.loader
+          this[l] = !this[l]
 
+          setTimeout(() => (this[l] = false), 500)
+
+          this.loader = null
+        },
+      },
   methods: {
     connect() {
       // funktionen som styr själva processen att connecta till vår databas
@@ -195,30 +211,35 @@ export default {
     //   );
     // },
 
-    valueChange() {
-      let value = 0;
-      if (switchy == 1){ 
+  
+    valueChange(chng) {
+      if (chng == 1){ 
         value+=10;
       };
-      if (switchy == 0){
+      if (chng == 0){
         value-=10;
+        // if (value < 0){
+        //   value = 0;
+        // };
       };
 
       if (value > 1024){
         value = 1024
-      };
-      console.log(value);
+      };      
+      this.dir();
     },
-
-    dir() {
-      //skickar ett värde på 1 eller 0 till databas, ledstripp är av eller på
-      this.message = this.letters[state];
-      console.log(message);
+    
+    dir(thestate) {
+      this.mess = this.letters[thestate]+value;
+      console.log(this.letters)
+      console.log(value);
       this.client.publish(
         "saga.sellin@abbindustrigymnasium.se/direction",
-        this.message.toString()
+        // this.mess
+        value
       );
       },
+    
       // toggle () {
       // this.show = !this.show
       // },
