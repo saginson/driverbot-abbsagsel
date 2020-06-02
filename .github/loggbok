@@ -77,3 +77,9 @@
     Allra sist på dagen lade jag till små kommentarer från mig
     som användaren får när spelet är klart beroende på hur många
     rätta svar den fick.
+
+2020-06-02
+	Under de senaste lektionerna har jag gjort färdigt hemsidan 
+	och anpassat den efter exempelkoden i Arduino. Utöver det 
+	skickas nu meddelanden som Arduinokoden kan tolka och bilen 
+	fungerar som den ska.

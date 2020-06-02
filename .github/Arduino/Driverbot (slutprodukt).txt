@@ -1,0 +1,113 @@
+#include <EspMQTTClient.h>
+#include "PubSubClient.h"
+#include <Servo.h>
+
+Servo servo;
+
+void onConnectionEstablished();
+
+EspMQTTClient client(
+    "",   //wifi ssid
+    "",   //wifi password
+    "maqiatto.com",   //MQTT broker ip
+    1883,   //MQTT broker port
+    "saga.sellin@abbindustrigymnasium.se",    //MQTT username
+    "MQTTPAS",    //MQTT 
+    "microdator0",    //client name
+    onConnectionEstablished,    //connection established callback
+    true,   //enable web updater
+    true    //enable debug messages
+
+  );
+
+
+#define motorPinDir  0//D2
+#define motorPinSpeed 5//D1
+
+void setup() { //loopen körs en gång
+  servo.attach(14); //D5
+  pinMode(motorPinDir, OUTPUT); //definierar motorPinDir som en output
+  pinMode(motorPinSpeed, OUTPUT); //definierar motorPinSpeed som en output
+  servo.write(90); //"vrider" servot framåt/nolställer det
+  Serial.begin(115200);
+  delay(2000);
+}
+
+bool off = false;
+
+void turn(bool left, int degrees) { //funktionen som kontrollerar servot
+  if (left == true) //genom att true sätts in i "bool left" i funktionen vrids servot åt vänster
+  {
+    degrees -= 90;
+    if (degrees < 0)
+    {
+      degrees = 0; //då servot inte kan vridas till negativa grader fungerar detta som en spärr
+      digitalWrite(motorPinDir, 1);
+      analogWrite(motorPinSpeed, 1000);
+    }
+    servo.write(degrees);
+  }
+  else
+  {
+    degrees += 90;
+    if (degrees > 180)
+    {
+      degrees = 180;
+      digitalWrite(motorPinDir, 1);
+      analogWrite(motorPinSpeed, 1000);
+    }
+    servo.write(degrees);
+    Serial.println("höger");
+  }
+  Serial.println(degrees);
+}
+
+void drive(bool dir, int speed) {
+  servo.write(90);
+  
+  digitalWrite(motorPinDir, dir);
+  analogWrite(motorPinSpeed, speed);
+  
+}
+
+void nosignal() { //a function that makes the motor stop moving and therefore the car will stop
+  digitalWrite(motorPinDir, 0);
+  analogWrite(motorPinSpeed, 0);
+}
+
+void onConnectionEstablished() {
+  client.subscribe("saga.sellin@abbindustrigymnasium.se/direction", [](const String &payload) {
+
+  char info = payload.charAt(0); //tolkar första tecknet
+  int length = payload.length(); //tolkar längden på meddelandet
+  String value = payload.substring(1,length); //"isolerar" alla tecken med värde 1 till sista (length)
+  int speed = value.toInt(); //value konverteras till int och variabeln speed används sen för att ange hastigheten
+  if (info == 'f' || info == 'b')
+  {
+    bool dir = false;
+    if (info == 'f'){
+    dir = true;}
+    drive(dir,speed);
+  }
+  else if (info == 'r' || info == 'l')
+  {
+    bool dir = false;
+    if (info == 'l'){
+    dir = true;}
+    turn(dir,speed);
+  }
+  else if (info == 's')
+  {
+    nosignal();
+  }
+  Serial.println(payload);
+  });
+client.publish("saga.sellin@abbindustrigymnasium.se/standard","You are connected."); //meddelandet publiceras till mitt topic "standard"
+client.executeDelayed(5 * 1000, []() {
+client.publish("saga.sellin@abbindustrigymnasium.se/standard","Still connected.");
+  });
+}
+
+void loop() {
+  client.loop(); //loopar tidigare funktioner
+}

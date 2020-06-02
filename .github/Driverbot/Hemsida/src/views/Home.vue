@@ -119,10 +119,7 @@ export default {
     this.connect();
     setInterval(() => {
       this.connect();
-      // console.log(this.connected); //under testningen behövdes denna så att användaren kunde se i konsollen ifall webbsidan connectat
-      // console.log("helo");
     }, 2000); //webbsidan försöker ansluta varannan sekund för att motverka avbrott
-    // console.log("heloo");
     
   },
   watch: {
@@ -152,17 +149,12 @@ export default {
         password: this.pass
       };
 
-    //   console.log("connecting");
       this.client = mqtt.connect(url, options);
-    //   console.log("connected?"); //ifall webbsidan lyckats koppla upp sig syns bara "connecting, connected?", annars kommer även "disconnected"
       this.client
         .on("error", function(error) {
-          // console.log("disconnected");
           this.connected = false;
-        //   console.log(this.Alert, this.connected);
         })
         .on("close", function(error) {
-          // console.log("disconnected");
           this.connected = false;
         });
       this.connected = true;
@@ -191,9 +183,6 @@ export default {
         this.letters[thestate] = "s";
       }
       this.mess = this.letters[thestate]+value;
-      // console.log(this.letters[thestate])
-      // console.log(this.letters[thestate]+value.toString())
-      // console.log(value);
       
       this.client.publish(
         "saga.sellin@abbindustrigymnasium.se/direction",

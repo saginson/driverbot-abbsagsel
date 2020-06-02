@@ -9,14 +9,10 @@
       class="my-4">
       <v-card flat height="70px">
         <v-toolbar :color="bar.class" :dark="bar.dark" >
-          <!-- här har jag använt mig av en router-link istället, vilket skickar användaren till "/" som jag då gjort till startsidan i router.js -->
+          <!-- router-link som ej används -->
           <router-link id=b45 :to="{ path: '/' }">Home</router-link>
           <v-spacer></v-spacer>
           <v-col cols="12" sm="3" name: column>
-            <!-- genom to="help" skickas användaren till routen "help" -->
-            <!-- <v-btn icon to="help"> -->
-              <!-- <v-icon>mdi-information</v-icon> -->
-            <!-- </v-btn> -->
           </v-col>
         </v-toolbar>
       </v-card>
@@ -34,9 +30,7 @@
       bars: [
         { class: '', dark: true },
       ],
-
     }),
-
  }
 
 
